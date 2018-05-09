@@ -24,6 +24,7 @@ export default [
     output: {
       file: 'dist/starmash/cruise.js',
       format: 'iife',
+      banner: '!',
       strict: false,
     },
     plugins: [cleanup()],

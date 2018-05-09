@@ -20,7 +20,7 @@ https://wight-airmash.github.io/airmash-cruise/dist/starmash/cruise.js
 ### How to use
 
 Press 5 or End to turn on the cruise control or press 6 to turn on the cruise control with auto-acceleration.
-Press again 5, End or 6, or direction keys to turn off cruise control.
+Press again 5, End or 6, or direction (forward or backward) keys to turn off cruise control.
 
 ## Google Chrome extension
 
@@ -36,7 +36,7 @@ This extension for Google Chrome adds a cruise control function with optional au
 ### How to use
 
 Press 5 or End to turn on the cruise control or press 6 to turn on the cruise control with auto-acceleration.
-Press again 5, End or 6, or direction keys to turn off cruise control.
+Press again 5, End or 6, or direction (forward or backward) keys to turn off cruise control.
 
 ## How to change hotkeys
 

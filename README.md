@@ -14,7 +14,7 @@ The basic cruise control function of the mod is improved:
 Add an extension file:
 
 ```
-https://raw.githubusercontent.com/wight-airmash/airmash-cruise/master/dist/starmash/cruise.js
+https://wight-airmash.github.io/airmash-cruise/dist/starmash/cruise.js
 ```
 
 ### How to use

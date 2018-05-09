@@ -1,0 +1,25 @@
+{
+  "manifest_version": 2,
+  "name": "Airma.sh Cruise control",
+  "description": "Press 5 or 6 to turn on cruise control",
+  "version": "1.0.0",
+
+  "permissions": ["activeTab"],
+
+  "content_scripts": [
+    {
+      "matches": ["https://airma.sh/*"],
+      "js": ["js/inject.js"],
+      "all_frames": true
+    }
+  ],
+
+  "icons": {
+    "16": "icons/icon_16.png",
+    "32": "icons/icon_32.png",
+    "48": "icons/icon_48.png",
+    "128": "icons/icon_128.png"
+  },
+
+  "web_accessible_resources": ["js/app.js"]
+}

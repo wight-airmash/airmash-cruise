@@ -1,0 +1,61 @@
+{
+  "name": "airmash-cruise",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -w -c"
+  },
+  "keywords": [],
+  "author": "wight",
+  "license": "MIT",
+  "eslintConfig": {
+    "extends": ["airbnb-base", "plugin:import/errors", "plugin:import/warnings", "prettier"],
+    "plugins": ["import"],
+    "settings": {
+      "import/extensions": [".js", ".json"]
+    },
+    "rules": {
+      "no-console": "off",
+      "import/extensions": [
+        "error",
+        "always",
+        {
+          "js": "never"
+        }
+      ]
+    },
+    "env": {
+      "browser": true,
+      "es6": true
+    },
+    "globals": {
+      "SWAM": false,
+      "SettingsProvider": false,
+      "game": false,
+      "config": false,
+      "Players": false,
+      "Network": false,
+      "chrome": false,
+      "$": false,
+      "Base64": false
+    }
+  },
+  "eslintIgnore": ["dist/*"],
+  "prettier": {
+    "singleQuote": true,
+    "printWidth": 100,
+    "trailingComma": "es5"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.11.0",
+    "prettier": "^1.12.1",
+    "rollup": "^0.58.1",
+    "rollup-plugin-cleanup": "^3.0.0-beta.1",
+    "rollup-plugin-copy": "^0.2.3"
+  },
+  "dependencies": {}
+}

@@ -1,38 +1,14 @@
-const HOTKEYS = {
-  CRUISE: '6', // cruise control hotkey
-  BOOST: '7', // cruise control with auto-acceleration hotkey
-  UP: ['ArrowUp', 'w'],
-  DOWN: ['ArrowDown', 's'],
-};
+import Hotkeys from './core/hotkeys';
+import isChatOpen from './helpers/chat';
+import { SHIPS } from './core/constants';
 
-const SHIPS = {
-  PREDATOR: 1,
-  MOHAWK: 3,
-};
-
-const isExists = v => typeof v !== 'undefined';
-
-const setupHotkeys = () => {
-  if (isExists(config.settings.keybinds.UP)) {
-    HOTKEYS.UP = config.settings.keybinds.UP.map(key => {
-      return key === 'UP' ? 'ArrowUp' : key.toLowerCase();
-    });
-  }
-
-  if (isExists(config.settings.keybinds.DOWN)) {
-    HOTKEYS.DOWN = config.settings.keybinds.DOWN.map(key => {
-      return key === 'DOWN' ? 'ArrowDown' : key.toLowerCase();
-    });
-  }
-};
-
-const isChatOpen = () => {
-  const chatInput = document.querySelector('#chatinput');
-
-  return (
-    chatInput !== null && !(chatInput.style.display === 'none' || chatInput.style.display === '')
-  );
-};
+const HOTKEYS = new Hotkeys().all();
+let isCruiseControl = false;
+let cruiseControlDirection = 'UP';
+let isDirectionKeyWasPressed = false;
+let flightDirection = 'UP';
+let isBoost = false;
+let boostInterval = null;
 
 const cruiseStart = direction => {
   cruiseControlDirection = direction;
@@ -61,15 +37,6 @@ const stopBoost = () => {
   Network.sendKey('SPECIAL', false);
 };
 
-let isCruiseControl = false;
-let cruiseControlDirection = 'UP';
-let isDirectionKeyWasPressed = false;
-let flightDirection = 'UP';
-let isBoost = false;
-let boostInterval = null;
-
-setupHotkeys();
-
 document.addEventListener('keydown', e => {
   const isUp = HOTKEYS.UP.includes(e.key);
   const isDown = HOTKEYS.DOWN.includes(e.key);
@@ -84,7 +51,7 @@ document.addEventListener('keydown', e => {
 
     isDirectionKeyWasPressed = true;
     flightDirection = isUp ? 'UP' : 'DOWN';
-  } else if ((e.key === HOTKEYS.CRUISE || e.key === HOTKEYS.BOOST) && !isChatOpen()) {
+  } else if ((HOTKEYS.CRUISE.includes(e.key) || HOTKEYS.BOOST.includes(e.key)) && !isChatOpen()) {
     if (isCruiseControl) {
       isCruiseControl = false;
 
@@ -95,7 +62,7 @@ document.addEventListener('keydown', e => {
 
       cruiseStart(flightDirection);
 
-      if (game.myType === SHIPS.PREDATOR && e.key === HOTKEYS.BOOST) {
+      if (game.myType === SHIPS.PREDATOR && HOTKEYS.BOOST.includes(e.key)) {
         startBoost();
       }
     }

@@ -28,7 +28,7 @@ export default class Cruise {
 
     this.resetDefaultCruise();
 
-    SWAM.on('keydown', e => {
+    document.addEventListener('keydown', e => {
       const isUp = this.HOTKEYS.UP.includes(e.key);
       const isDown = this.HOTKEYS.DOWN.includes(e.key);
 
@@ -63,7 +63,7 @@ export default class Cruise {
       }
     });
 
-    SWAM.on('keyup', e => {
+    document.addEventListener('keyup', e => {
       if (this.HOTKEYS.UP.includes(e.key) || this.HOTKEYS.DOWN.includes(e.key)) {
         this.isDirectionKeyWasPressed = false;
 

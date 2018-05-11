@@ -26,6 +26,7 @@
       this.flightDirection = 'UP';
       this.isBoost = false;
       this.boostInterval = null;
+      this.boostStopTimeout = null;
     }
     bindHotkeys({ CRUISE, BOOST, UP, DOWN }) {
       this.HOTKEYS = {
@@ -100,12 +101,13 @@
       this.boostInterval = setInterval(() => {
         this.isBoost = !this.isBoost;
         Network.sendKey('SPECIAL', this.isBoost);
-        setTimeout(() => {
+        this.boostStopTimeout = setTimeout(() => {
           Network.sendKey('SPECIAL', false);
         }, 850);
-      }, 1000);
+      }, 970);
     }
     stopBoost() {
+      clearTimeout(this.boostStopTimeout);
       clearInterval(this.boostInterval);
       this.isBoost = false;
       Network.sendKey('SPECIAL', false);
@@ -210,7 +212,7 @@
     id: 'wight.cruise',
     description: 'Moving forward or backward in cruise mode and auto acceleration',
     author: 'wight',
-    version: '1.0.1',
+    version: '1.0.2',
   });
 
 }());

@@ -16,6 +16,7 @@ export default class Cruise {
     this.flightDirection = 'UP';
     this.isBoost = false;
     this.boostInterval = null;
+    this.boostStopTimeout = null;
   }
 
   bindHotkeys({ CRUISE, BOOST, UP, DOWN }) {
@@ -111,13 +112,14 @@ export default class Cruise {
       this.isBoost = !this.isBoost;
       Network.sendKey('SPECIAL', this.isBoost);
 
-      setTimeout(() => {
+      this.boostStopTimeout = setTimeout(() => {
         Network.sendKey('SPECIAL', false);
       }, 850);
-    }, 1000);
+    }, 970);
   }
 
   stopBoost() {
+    clearTimeout(this.boostStopTimeout);
     clearInterval(this.boostInterval);
 
     this.isBoost = false;

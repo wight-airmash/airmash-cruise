@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Airma.sh Improved Cruise Control",
   "description": "Press 5 or 6 to turn on cruise control",
-  "version": "1.0.0",
+  "version": "1.0.2",
 
   "permissions": ["activeTab"],
 

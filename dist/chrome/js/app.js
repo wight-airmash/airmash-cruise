@@ -61,6 +61,7 @@
   let flightDirection = 'UP';
   let isBoost = false;
   let boostInterval = null;
+  let boostStopTimeout = null;
   const cruiseStart = direction => {
     cruiseControlDirection = direction;
     Network.sendKey(cruiseControlDirection, true);
@@ -72,12 +73,13 @@
     boostInterval = setInterval(() => {
       isBoost = !isBoost;
       Network.sendKey('SPECIAL', isBoost);
-      setTimeout(() => {
+      boostStopTimeout = setTimeout(() => {
         Network.sendKey('SPECIAL', false);
       }, 850);
     }, 1000);
   };
   const stopBoost = () => {
+    clearTimeout(boostStopTimeout);
     clearInterval(boostInterval);
     isBoost = false;
     Network.sendKey('SPECIAL', false);

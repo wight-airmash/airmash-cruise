@@ -45,7 +45,8 @@ export default class Cruise {
         this.flightDirection = isUp ? 'UP' : 'DOWN';
       } else if (
         (this.HOTKEYS.CRUISE.includes(e.key) || this.HOTKEYS.BOOST.includes(e.key)) &&
-        !isChatOpen()
+        !isChatOpen() &&
+        !SWAM.radio.visible()
       ) {
         if (this.isCruiseControl) {
           this.isCruiseControl = false;

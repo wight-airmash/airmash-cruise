@@ -49,7 +49,8 @@
           this.flightDirection = isUp ? 'UP' : 'DOWN';
         } else if (
           (this.HOTKEYS.CRUISE.includes(e.key) || this.HOTKEYS.BOOST.includes(e.key)) &&
-          !isChatOpen()
+          !isChatOpen() &&
+          !SWAM.radio.visible()
         ) {
           if (this.isCruiseControl) {
             this.isCruiseControl = false;
@@ -212,7 +213,7 @@
     id: 'wight.cruise',
     description: 'Moving forward or backward in cruise mode and auto acceleration',
     author: 'wight',
-    version: '1.0.2',
+    version: '1.0.3',
   });
 
 }());

@@ -5,7 +5,12 @@ const cruise = new Cruise();
 
 SWAM.on('gameRunning', () => {
   const config = new Config();
-  cruise.bindHotkeys(config.hotkeys());
+  cruise.loadHotkeys(config.hotkeys());
+  cruise.bindHotkeys();
+
+  SWAM.on('cruise:keybinds:updated', () => {
+    cruise.loadHotkeys(config.hotkeys());
+  });
 });
 
 SWAM.on('gameWipe', () => {
@@ -17,5 +22,5 @@ SWAM.registerExtension({
   id: 'wight.cruise',
   description: 'Moving forward or backward in cruise mode and auto acceleration',
   author: 'wight',
-  version: '1.0.3',
+  version: '1.1.0',
 });

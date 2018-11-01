@@ -26,19 +26,36 @@
     }
     all() {
       if (!this.isInit) {
-        this.setupHotkeys();
+        this.parseHotkeys();
+        this.bindKeybindsEvents();
+        this.isInit = true;
       }
       return this.keys;
     }
-    setupHotkeys() {
-      if (isExists(config.settings.keybinds)) {
-        if (isExists(config.settings.keybinds.UP)) {
-          this.keys.UP = config.settings.keybinds.UP.map(convertKey);
+    parseHotkeys() {
+      const settings = JSON.parse(localStorage.getItem('settings'));
+      if (isExists(settings.keybinds)) {
+        if (isExists(settings.keybinds.UP)) {
+          this.keys.UP = settings.keybinds.UP.map(convertKey);
+        } else {
+          this.keys.UP = ['ArrowUp', 'w'];
         }
-        if (isExists(config.settings.keybinds.DOWN)) {
-          this.keys.DOWN = config.settings.keybinds.DOWN.map(convertKey);
+        if (isExists(settings.keybinds.DOWN)) {
+          this.keys.DOWN = settings.keybinds.DOWN.map(convertKey);
+        } else {
+          this.keys.DOWN = ['ArrowDown', 's'];
         }
       }
+    }
+    bindKeybindsEvents() {
+      const originalCloseKeybinds = Input.closeKeybinds;
+      Input.closeKeybinds = () => {
+        this.parseHotkeys();
+        if (isExists(SWAM)) {
+          SWAM.trigger('cruise:keybinds:updated');
+        }
+        originalCloseKeybinds();
+      };
     }
   }
 

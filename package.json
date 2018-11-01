@@ -10,10 +10,20 @@
   "author": "wight",
   "license": "MIT",
   "eslintConfig": {
-    "extends": ["airbnb-base", "plugin:import/errors", "plugin:import/warnings", "prettier"],
-    "plugins": ["import"],
+    "extends": [
+      "airbnb-base",
+      "plugin:import/errors",
+      "plugin:import/warnings",
+      "prettier"
+    ],
+    "plugins": [
+      "import"
+    ],
     "settings": {
-      "import/extensions": [".js", ".json"]
+      "import/extensions": [
+        ".js",
+        ".json"
+      ]
     },
     "rules": {
       "no-console": "off",
@@ -38,23 +48,26 @@
       "Network": false,
       "chrome": false,
       "$": false,
-      "Base64": false
+      "Base64": false,
+      "Input": false
     }
   },
-  "eslintIgnore": ["dist/*"],
+  "eslintIgnore": [
+    "dist/*"
+  ],
   "prettier": {
     "singleQuote": true,
     "printWidth": 100,
     "trailingComma": "es5"
   },
   "devDependencies": {
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-import": "^2.11.0",
-    "prettier": "^1.12.1",
-    "rollup": "^0.58.1",
-    "rollup-plugin-cleanup": "^3.0.0-beta.1",
+    "eslint": "^5.8.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "prettier": "^1.14.3",
+    "rollup": "^0.66.6",
+    "rollup-plugin-cleanup": "^3.0.0",
     "rollup-plugin-copy": "^0.2.3"
   },
   "dependencies": {}

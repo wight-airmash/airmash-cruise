@@ -19,19 +19,20 @@ export default class Cruise {
     this.boostStopTimeout = null;
   }
 
-  bindHotkeys({ CRUISE, BOOST, UP, DOWN }) {
-    this.HOTKEYS = {
-      CRUISE,
-      BOOST,
-      UP,
-      DOWN,
-    };
+  loadHotkeys({ CRUISE, BOOST, UP, DOWN }) {
+    this.HOTKEYS = { CRUISE, BOOST, UP, DOWN };
+  }
 
+  bindHotkeys() {
     this.resetDefaultCruise();
 
     document.addEventListener('keydown', e => {
       const isUp = this.HOTKEYS.UP.includes(e.key);
       const isDown = this.HOTKEYS.DOWN.includes(e.key);
+
+      if (isChatOpen()) {
+        return false;
+      }
 
       if (isUp || isDown) {
         if (this.isCruiseControl && !this.isDirectionKeyWasPressed) {
@@ -45,7 +46,6 @@ export default class Cruise {
         this.flightDirection = isUp ? 'UP' : 'DOWN';
       } else if (
         (this.HOTKEYS.CRUISE.includes(e.key) || this.HOTKEYS.BOOST.includes(e.key)) &&
-        !isChatOpen() &&
         !SWAM.radio.visible()
       ) {
         if (this.isCruiseControl) {
@@ -63,9 +63,15 @@ export default class Cruise {
           }
         }
       }
+
+      return true;
     });
 
     document.addEventListener('keyup', e => {
+      if (isChatOpen()) {
+        return false;
+      }
+
       if (this.HOTKEYS.UP.includes(e.key) || this.HOTKEYS.DOWN.includes(e.key)) {
         this.isDirectionKeyWasPressed = false;
 
@@ -77,6 +83,8 @@ export default class Cruise {
           }, 20);
         }
       }
+
+      return true;
     });
   }
 

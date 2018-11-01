@@ -8,8 +8,6 @@ export default class Config {
 
     this.userSettings = DEFAULT_SETTINGS;
 
-    console.log(this.userSettings);
-
     this.settingsProvider = () => {
       const parseSettings = settings => {
         const compiledSettings = { ...settings };

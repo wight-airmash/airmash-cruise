@@ -1,6 +1,7 @@
 import cleanup from 'rollup-plugin-cleanup';
 import copy from 'rollup-plugin-copy';
 import { terser } from 'rollup-plugin-terser';
+import filesize from 'rollup-plugin-filesize';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -17,7 +18,6 @@ export default [
         'src/icons': 'dist/chrome/icons',
         'src/static/manifest.json': 'dist/chrome/manifest.json',
         'src/js/helpers/inject.js': 'dist/chrome/js/inject.js',
-        verbose: true,
       }),
       cleanup(),
     ],
@@ -32,7 +32,11 @@ export default [
     },
     plugins: [
       cleanup(),
-      isProduction && terser()
+      filesize(),
+      isProduction &&
+        terser({
+          sourcemap: false,
+        }),
     ],
   },
 ];

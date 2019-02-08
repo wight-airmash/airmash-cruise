@@ -68,9 +68,9 @@
     "prettier": "^1.16.4",
     "rollup": "^1.1.2",
     "rollup-plugin-cleanup": "^3.1.1",
-    "rollup-plugin-copy": "^0.2.3"
-  },
-  "dependencies": {
+    "rollup-plugin-copy": "^0.2.3",
+    "rollup-plugin-filesize": "^6.0.1",
     "rollup-plugin-terser": "^4.0.4"
-  }
+  },
+  "dependencies": {}
 }

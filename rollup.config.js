@@ -1,5 +1,8 @@
 import cleanup from 'rollup-plugin-cleanup';
 import copy from 'rollup-plugin-copy';
+import { terser } from 'rollup-plugin-terser';
+
+const isProduction = process.env.NODE_ENV === 'production';
 
 export default [
   {
@@ -27,6 +30,9 @@ export default [
       banner: '!',
       strict: false,
     },
-    plugins: [cleanup()],
+    plugins: [
+      cleanup(),
+      isProduction && terser()
+    ],
   },
 ];

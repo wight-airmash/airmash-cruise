@@ -34,7 +34,7 @@ export default class Config {
 
       section.addButton('Change boosted cruise hotkey', {
         click() {},
-      });*/
+      }); */
 
       return sp;
     };

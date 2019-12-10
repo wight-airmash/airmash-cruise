@@ -22,5 +22,5 @@ SWAM.registerExtension({
   id: 'wight.cruise',
   description: 'Moving forward or backward in cruise mode and auto acceleration',
   author: 'wight',
-  version: '1.1.0',
+  version: '1.2.0',
 });
